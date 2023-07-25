@@ -2,18 +2,28 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    "allowJs": false,
+    //Всё связанное с use strict
+    "alwaysStrict": true, // Компилировать ли каждый файл в строгом режиме и создавать ли 'use strict' для каждого выходного файла? Требуется TypeScript версии 2.1 или новее.
+    "strict": true, // Включить ли все строги проверки типов сразу: noImplicitAny, noImplicitThis, alwaysStrict, strictNullChecks, strictFunctionTypes, strictPropertyInitialization?
+    "noImplicitUseStrict": false, // Не записывать 'use strict' в итоговый выходной файл?
+    //Всё связанное с ошибками
+    "noUnusedLocals": true, // Показывать ошибку, если найдены неиспользуемые локальные значения.
+    "noUnusedParameters": true, // Показывать ошибку, если найдены неиспользуемые параметры.
+    "allowUnreachableCode": true, // Сообщить об ошибке в случае обнаружения кода, который никогда не будет выполнен?
+    "pretty": true, // Окрашивать в терминале сообщения об ошибках.
+    //Остальное
+    "removeComments": true, // Удалить все комментарии из итогового файла.
+    "skipLibCheck": true, // Не проверять типы, заданные во всех файлах описания типов (*.d.ts)?
+    "forceConsistentCasingInFileNames": true, // Запретить несогласованные ссылки на один и тот же файл?
+    "noEmit": true,  // Не создавать итоговый файл.
+    "esModuleInterop": true, // Создать хелперы __importStar и __importDefault для обеспечения совместимости с экосистемой Babel и включить allowSyntheticDefaultImports для совместимости с системой типов.
     "module": "esnext",
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "resolveJsonModule": true, // Позволяет импортировать модули с .json расширением.
+    "isolatedModules": true, // Обрабатывать каждый файл, как отдельный изолированный модуль.
+    "jsx": "preserve", // Включать ли поддержку ".tsx" файлов?
+    "incremental": true, // Указывает TS сохранить информацию о графе проекта из последней компиляции в файлы для быстрой компиляции в дальнейшем.
     "plugins": [
       {
         "name": "next"
