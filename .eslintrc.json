@@ -1,51 +1,57 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "no-console": "warn",
-    "use-isnan": "error",
-    "quotes": ["error", "double"],
-    "jsx-quotes": ["error", "prefer-double"],
-    "prefer-const": "warn", // Требовать объявления const для переменных, которые никогда не переназначаются после объявления.
-    "indent": ["warn", 2], // Отступ
-    "max-len": ["error", { "code": 120 }],
-    "comma-dangle": ["error", "always-multiline"], // Всегда должна быть висящая запятая.
-    "semi": ["warn", "always"], // Всегда должна быть точка с запятой.
-    "no-extra-semi": "error", // Запретить ненужные точки с запятой.
-    "no-duplicate-imports": "error",
-    "no-self-assign": "error", // Устранение самоназначений.
-    "no-self-compare": "error", // Запретить сравнения, когда обе стороны абсолютно одинаковы.
-    "no-unmodified-loop-condition": "error", // Запретить неизмененные условия цикла.
-    "no-unreachable": "error", // Запретить недостижимый код после операторов return, throw, continue и break.
-    "no-unreachable-loop": "error", // Запретить циклы с телом, допускающим только одну итерацию.
-    "no-unsafe-negation": "error", // Запретить отрицание левого операнда операторов отношения.
-    "arrow-body-style": ["error", "always"], //Требовать фигурные скобки вокруг тел функций стрелок.
-    "capitalized-comments": ["error", "always", { 
-      "ignorePattern": "see" 
-      }], // Применять или запрещать использование заглавных букв в первой букве комментария.
-    "curly": ["error", "all"], // Обеспечить согласованный стиль фигурных скобок для всех операторов управления (func, if, while ...).
-    "default-param-last": "error", // Сделать параметры по умолчанию последними.
-    "eqeqeq": ["error", "always"], // Требовать использования === и !==.
-    "no-case-declarations": "error", // Запретить лексические объявления в предложениях case.
-    "no-confusing-arrow": "error", // Запретить стрелочные функции, если их можно спутать со сравнениями.
-    "no-else-return": "error", // Запретить else-блоки после операторов return в операторах if.
-    "no-extra-boolean-cast": "warn", // Запретить ненужные логические приведения.
-    "no-lone-blocks": "error", // Запретить ненужные вложенные блоки.
-    "no-lonely-if": "error", // Запретить операторы if как единственные операторы в else-блоках.
-    "no-magic-numbers": "error", // Запретить числа, которые встречаются в коде несколько раз без явного значения.
-    "no-redeclare": "error", // Запретить повторное объявление переменной.
-    "no-regex-spaces": "error", // Запретить использование нескольких пробелов в регулярных выражениях.
-    "no-shadow-restricted-names": "error", // Запретить идентификаторам скрывать имена с ограниченным доступом.
-    "no-unused-expressions": ["error", { "enforceForJSX": true }], // Запретить неиспользуемые выражения.
-    "no-unused-labels": "error", // Запретить неиспользуемые ярлыки.
-    "no-useless-catch": "error", // Запретить ненужные catch-предложения.
-    "no-useless-escape": "error", // Запретить ненужные escape-символы.
-    "no-useless-return": "error", // Запретить избыточные операторы возврата.
-    "require-await": "warn", // Запретить асинхронные функции, у которых нет await-выражения.
-    "spaced-comment": ["error", "always", { "markers": ["/"] }],
-    "arrow-parens": ["error", "always"], // Требовать круглых скобок вокруг аргументов стрелочной функции.
-    "import/order": ["error", {
-      "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
-      "newlines-between": "always-and-inside-groups"
-      }]
-  }
+	"extends": ["next/core-web-vitals"],
+	"rules": {
+		"no-console": "warn",
+		"use-isnan": "error",
+		"quotes": ["error", "double"],
+		"jsx-quotes": ["error", "prefer-double"],
+		"prefer-const": "warn", // Требовать объявления const для переменных, которые никогда не переназначаются после объявления.
+		"indent": ["warn", "tab"], // Отступ
+		"max-len": ["error", { "code": 120 }],
+		"comma-dangle": ["error", "always-multiline"], // Всегда должна быть висящая запятая.
+		"semi": [
+			"warn",
+			"always",
+			{
+				"omitLastInOneLineBlock": true,
+				"omitLastInOneLineClassBody": true
+			}
+		], // Всегда должна быть точка с запятой.
+		"no-extra-semi": "error", // Запретить ненужные точки с запятой.
+		"no-duplicate-imports": "error",
+		"no-self-assign": "error", // Устранение самоназначений.
+		"no-self-compare": "error", // Запретить сравнения, когда обе стороны абсолютно одинаковы.
+		"no-unmodified-loop-condition": "error", // Запретить неизмененные условия цикла.
+		"no-unreachable": "error", // Запретить недостижимый код после операторов return, throw, continue и break.
+		"no-unreachable-loop": "error", // Запретить циклы с телом, допускающим только одну итерацию.
+		"no-unsafe-negation": "error", // Запретить отрицание левого операнда операторов отношения.
+		"arrow-body-style": ["error", "always"], //Требовать фигурные скобки вокруг тел функций стрелок.
+		"capitalized-comments": [
+			"warn",
+			"always",
+			{
+				"ignorePattern": "see"
+			}
+		], // Применять или запрещать использование заглавных букв в первой букве комментария.
+		"curly": ["error", "all"], // Обеспечить согласованный стиль фигурных скобок для всех операторов управления (func, if, while ...).
+		"default-param-last": "error", // Сделать параметры по умолчанию последними.
+		"eqeqeq": ["error", "always"], // Требовать использования === и !==.
+		"no-case-declarations": "error", // Запретить лексические объявления в предложениях case.
+		"no-confusing-arrow": "error", // Запретить стрелочные функции, если их можно спутать со сравнениями.
+		"no-else-return": "error", // Запретить else-блоки после операторов return в операторах if.
+		"no-extra-boolean-cast": "warn", // Запретить ненужные логические приведения.
+		"no-lone-blocks": "error", // Запретить ненужные вложенные блоки.
+		"no-lonely-if": "error", // Запретить операторы if как единственные операторы в else-блоках.
+		"no-redeclare": "error", // Запретить повторное объявление переменной.
+		"no-regex-spaces": "error", // Запретить использование нескольких пробелов в регулярных выражениях.
+		"no-shadow-restricted-names": "error", // Запретить идентификаторам скрывать имена с ограниченным доступом.
+		"no-unused-expressions": ["error", { "enforceForJSX": true }], // Запретить неиспользуемые выражения.
+		"no-unused-labels": "error", // Запретить неиспользуемые ярлыки.
+		"no-useless-catch": "error", // Запретить ненужные catch-предложения.
+		"no-useless-escape": "error", // Запретить ненужные escape-символы.
+		"no-useless-return": "error", // Запретить избыточные операторы возврата.
+		"require-await": "warn", // Запретить асинхронные функции, у которых нет await-выражения.
+		"spaced-comment": ["error", "always", { "markers": ["/"] }],
+		"arrow-parens": ["error", "always"] // Требовать круглых скобок вокруг аргументов стрелочной функции.
+	}
 }
