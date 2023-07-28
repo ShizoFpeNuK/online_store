@@ -25,7 +25,6 @@
 		"no-unreachable": "error", // Запретить недостижимый код после операторов return, throw, continue и break.
 		"no-unreachable-loop": "error", // Запретить циклы с телом, допускающим только одну итерацию.
 		"no-unsafe-negation": "error", // Запретить отрицание левого операнда операторов отношения.
-		"arrow-body-style": ["error", "always"], //Требовать фигурные скобки вокруг тел функций стрелок.
 		"capitalized-comments": [
 			"warn",
 			"always",
