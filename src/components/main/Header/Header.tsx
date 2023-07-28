@@ -1,5 +1,6 @@
 "use client";
-import styles from "@/components/main/Header/Header.module.scss";
+
+import styles from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
@@ -16,7 +17,7 @@ const Header: FC = () => {
 						src="/logo.svg"
 						width={78}
 						height={32}
-						alt="Logo $taff"
+						alt="$taff"
 						priority
 					/>
 				</Link>
