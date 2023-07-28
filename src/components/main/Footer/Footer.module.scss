@@ -1,0 +1,44 @@
+@import "@/utils/scss/patterns";
+
+$svg_wh: 24px;
+
+.footer {
+  @extend %dflex;
+  @extend %section;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 24px;
+}
+
+.logo {
+  width: 61px;
+
+  a {
+    height: 100%;
+  }
+}
+
+.rights {
+  color: var(--dark-sea);
+  font-size: 12px;
+  line-height: 15px;
+
+  span {
+    color: var(--violet);
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 15px;
+
+  svg {
+    width: $svg_wh;
+    height: $svg_wh;
+    fill: var(--dark-sea);
+
+    &:hover {
+      fill: var(--violet);
+    }
+  }
+}

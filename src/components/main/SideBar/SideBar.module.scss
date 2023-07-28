@@ -1,0 +1,45 @@
+@import "@/utils/scss/patterns";
+
+.sidebar {
+  @extend %section;
+  display: flex;
+  flex-direction: column;
+  width: 304px;
+  padding: 24px;
+  height: 423px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+  row-gap: 12px;
+}
+
+.link {
+  color: var(--dark-sea);
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: capitalize;
+  
+  &:hover {
+    color: var(--white);
+  }
+
+  &.active {
+    color: var(--violet);
+  } 
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}

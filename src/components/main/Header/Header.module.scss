@@ -1,12 +1,9 @@
+@import "@/utils/scss/patterns";
+
 $icon_wh: 13px;
 $avatar_wh: 36px;
 $svg_wh: 24px;
 $count_wh: 14px;
-
-%dflex {
-  display: flex;
-  align-items: center;
-}
 
 .header {
   @extend %dflex;
@@ -62,33 +59,38 @@ $count_wh: 14px;
 .icon {
   width: $icon_wh;
   height: $icon_wh;
-}
 
-.icon svg {
-  width: 100%;
-  height: 100%;
-  fill: var(--dark-sea);
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--dark-sea);
+  }
 }
 
 .input {
   flex-grow: 1;
-}
 
-.input input {
-  font-family: Montserrat, Roboto, sans-serif;
-  font-size: 12px;
-  line-height: 14px;
-  color: var(--gray);
-  background: none;
-  outline: none;
-  width: 100%;
-  border: none;
+  input {
+    font-family: Montserrat, Roboto, sans-serif;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--gray);
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+  }
 }
 
 // Аккаунт и его иконки
 .account {
   @extend %dflex;
   column-gap: 20px;
+
+  svg {
+    width: $svg_wh;
+    height: $svg_wh;
+  }
 }
 
 .favourites {
@@ -99,26 +101,21 @@ $count_wh: 14px;
   position: relative;
 }
 
-.account svg {
-  width: $svg_wh;
-  height: $svg_wh;
-}
-
 .icon-fav {
   stroke: var(--gray);
   fill: none;
+
+  &:hover {
+    stroke: var(--white);
+  }
 }
 
 .icon-cart {
   fill: var(--gray);
-}
 
-.icon-fav:hover {
-  stroke: var(--white);
-}
-
-.icon-cart:hover {
-  fill: var(--white);
+  &:hover {
+    fill: var(--white);
+  }
 }
 
 .count {
@@ -151,8 +148,8 @@ $count_wh: 14px;
   // row-gap: 8px;
   background: var(--dark-sea);
   border-radius: 8px;
-}
 
-.box::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
