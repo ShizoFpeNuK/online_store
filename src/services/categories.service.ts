@@ -1,11 +1,11 @@
-import axios from "axios";
+import platzApi from "@/utils/axios/axios.config";
 import { ICategory } from "@/models/category.model";
 
 class CategoriesService {
-	private static pathBase = "https://api.escuelajs.co/api/v1/categories";
+	private static pathBase = "/categories";
 
 	static async getAll() {
-		const categories = await axios.get<ICategory[]>(this.pathBase);
+		const categories = await platzApi.get<ICategory[]>(this.pathBase);
 
 		return categories.data;
 	}

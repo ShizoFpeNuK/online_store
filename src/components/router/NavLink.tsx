@@ -8,7 +8,7 @@ interface INavLink {
 	href: string;
 	children?: ReactNode;
 	className?: string;
-  activeStyle: string;
+	activeStyle: string;
 }
 
 export const NavLink: FC<INavLink> = ({ href, children, className, activeStyle }) => {

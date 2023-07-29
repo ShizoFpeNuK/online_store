@@ -4,7 +4,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 class CategoriesStore {
 	categories: ICategory[] = [];
-	isLoading: boolean = false;
+	isLoading: boolean = true;
 
 	constructor() {
 		makeAutoObservable(this);
@@ -12,7 +12,6 @@ class CategoriesStore {
 
 	async getCategories() {
 		try {
-			this.isLoading = true;
 			const res = await CategoriesService.getAll();
 			runInAction(() => {
 				this.categories = res;
