@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Sofia+Sans:wght@300;500;700&display=swap");
+@import "@/utils/scss/patterns";
 @import "@/utils/scss/var";
 
 body {
   color: var(--white);
-  background-color: #212123;
+  background-color: var(--bg);
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
@@ -50,4 +51,28 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+button {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 16px;
+  font-family: Montserrat, Roboto, sans-serif;
+  color: var(--white);
+  background: var(--violet-dark);
+  border-radius: 6px;
+  padding: 9px 20px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.loading {
+  @extend %section;
+  display: flex;
+  height: 200px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
