@@ -1,19 +1,17 @@
+"use client";
+
+import useUser from "@/stores/useUser";
 import styles from "./User.module.scss";
-import { ChangeEventHandler, FC, useState } from "react";
+import { ChangeEventHandler, FC, FormEventHandler, useState } from "react";
+import { ICreateUser } from "@/models/user.model";
 
 interface IUserRefForm {
 	closeForm: () => void;
 }
 
-type RegisterForm = {
-	name: string;
-	email: string;
-	password: string;
-	avatar: string;
-};
-
 const UserRegForm: FC<IUserRefForm> = ({ closeForm }) => {
-	const [values, setValues] = useState<RegisterForm>({
+	const registerUser = useUser((state) => state.registerUser);
+	const [values, setValues] = useState<ICreateUser>({
 		name: "",
 		email: "",
 		password: "",
@@ -24,9 +22,23 @@ const UserRegForm: FC<IUserRefForm> = ({ closeForm }) => {
 		setValues({ ...values, [name]: value });
 	};
 
+	const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+		e.preventDefault();
+
+		const isNotEmpty = Object.values(values).every((val) => val);
+
+		if (isNotEmpty) {
+			registerUser(values);
+			closeForm();
+		}
+	};
+
 	return (
 		<div className={styles.wrapper}>
-			<div className={styles.close} onClick={closeForm}>
+			<div
+				className={styles.close}
+				onClick={closeForm}
+			>
 				<svg className={styles["icon-fav"]}>
 					<use href="/sprite.svg#close" />
 				</svg>
@@ -34,7 +46,10 @@ const UserRegForm: FC<IUserRefForm> = ({ closeForm }) => {
 
 			<div className={styles.title}>Sign Up</div>
 
-			<form className={styles.form}>
+			<form
+				className={styles.form}
+				onSubmit={onSubmit}
+			>
 				<div className={styles.group}>
 					<input
 						type="email"
