@@ -2,23 +2,22 @@
 
 import styles from "./SideBar.module.scss";
 import NavLink from "../../router/NavLink";
-import CategoriesStore from "@/stores/categories.store";
+import useCategories from "@/stores/useCategories";
+import { FC } from "react";
 import { ROUTES } from "@/utils/routes";
-import { observer } from "mobx-react";
-import { FC, useEffect } from "react";
 
-const categoriesStore = new CategoriesStore();
-
-const NavCategories: FC = observer(() => {
-	useEffect(() => {
-		categoriesStore.getCategories();
-	}, []);
+const NavCategories: FC = () => {
+	const categories = useCategories((state) => state.categories);
+	const amount = 5;
 
 	return (
 		<nav>
-			{!categoriesStore.isLoading ? (
-				<ul className={styles.menu}>
-					{categoriesStore.categories.map(({ name, id }) => (
+			<ul className={styles.menu}>
+				{categories
+					.filter((_, i) => {
+						return i < amount;
+					})
+					.map(({ name, id }) => (
 						<li key={id}>
 							<NavLink
 								href={`${ROUTES.CATEGORY}/${id}`}
@@ -29,12 +28,9 @@ const NavCategories: FC = observer(() => {
 							</NavLink>
 						</li>
 					))}
-				</ul>
-			) : (
-				<p>Loading...</p>
-			)}
+			</ul>
 		</nav>
 	);
-});
+};
 
 export default NavCategories;
