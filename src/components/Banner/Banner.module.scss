@@ -1,0 +1,80 @@
+@import "@/utils/scss/patterns";
+
+.banner {
+  @extend %section;
+  display: flex;
+  width: 100%;
+  height: 570px;
+}
+
+.left {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+  }
+
+  &:before {
+    width: 204px;
+    height: 170px;
+    left: -25px;
+    bottom: 74px;
+    background: url(../../../public/shoe.png) no-repeat center/contain;
+  }
+
+  &:after {
+    width: 269px;
+    height: 151px;
+    right: -25px;
+    bottom: -25px;
+    background: url(../../../public/devices.png) no-repeat center/contain;
+  }
+}
+.right {
+  position: relative;
+}
+
+.content {
+  color: var(--violet);
+  font-weight: 300;
+  font-size: 70px;
+  line-height: 85px;
+  text-align: center;
+  text-transform: uppercase;
+
+  span {
+    line-height: 183px;
+    font-size: 150px;
+    display: block;
+  }
+}
+
+.more {
+  margin-top: 27px;
+}
+
+.discount {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: var(--bg);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 24px;
+
+  span {
+    color: var(--violet);
+    font-weight: 700;
+  }
+}
