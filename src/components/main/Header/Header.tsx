@@ -6,8 +6,6 @@ import { FC } from "react";
 import { ROUTES } from "@/utils/routes";
 
 const Header: FC = () => {
-	const onChange = () => {};
-
 	return (
 		<header className={styles.header}>
 			<div className={styles.logo}>
@@ -37,7 +35,6 @@ const Header: FC = () => {
 							name="search"
 							placeholder="Search for anything..."
 							autoComplete="off"
-							onChange={onChange}
 						/>
 					</div>
 				</form>
