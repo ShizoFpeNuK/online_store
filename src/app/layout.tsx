@@ -1,10 +1,11 @@
 import "./globals.scss";
-import Poster from "@/components/Poster/Poster";
 import Header from "@/components/main/Header/Header";
 import Footer from "@/components/main/Footer/Footer";
 import SideBar from "@/components/main/SideBar/SideBar";
-import WrapperProducts from "@/components/Products/WrapperProducts/WrapperProducts";
-import WrapperCategories from "@/components/Categories/WrapperCategories/WrapperCategories";
+import ProductsService from "@/services/products.service";
+import WrapperUserForm from "@/components/User/WrapperUserForm/WrapperUserForm";
+import StoreInitializer from "@/components/main/StoreInitializer/StoreInitializer";
+import CategoriesService from "@/services/categories.service";
 import { FC, ReactNode } from "react";
 import type { Metadata } from "next";
 
@@ -13,24 +14,21 @@ export const metadata: Metadata = {
 	description: "Shop branded sneakers",
 };
 
-const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
-	const amount: number = 5;
+const RootLayout: FC<{ children: ReactNode }> = async ({ children }) => {
+	const products = await ProductsService.getAll();
+	const categories = await CategoriesService.getAll();
 
 	return (
 		<html lang="en">
 			<body className="container">
+				<StoreInitializer
+					products={products}
+					categories={categories}
+				/>
 				<Header />
+				<WrapperUserForm />
 				<main className="wrapper">
 					<SideBar />
-					<Poster />
-					<WrapperProducts
-						title="Trending"
-						amount={amount}
-					/>
-					<WrapperCategories
-						title="Worth seeing"
-						amount={amount}
-					/>
 					{children}
 				</main>
 				<Footer />

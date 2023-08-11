@@ -1,5 +1,3 @@
-"use client";
-
 import styles from "./SideBar.module.scss";
 import NavCategories from "@/components/main/SideBar/NavCategories";
 import { FC } from "react";
