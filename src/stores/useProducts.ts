@@ -15,10 +15,10 @@ const useProducts = createWithEqualityFn<ProductsStore>(
 		setProducts: (products: IProduct[]) => {
 			set({ products });
 		},
-		filterByPrice: (filterPrice: number) => {
+		filterByPrice: (filterPrice) => {
 			return get().products.filter(({ price }) => price < filterPrice);
 		},
-		relateInCategory: (categoryId: number) => {
+		relateInCategory: (categoryId) => {
 			return get().products.filter(({ category: { id } }) => id === categoryId);
 		},
 	}),

@@ -3,7 +3,7 @@
 import styles from "./SingleProduct.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import useUser from "@/stores/useUser";
+import useCart from "@/stores/useCart";
 import { ROUTES } from "@/utils/routes";
 import { IProduct } from "@/models/product.model";
 import { FC, useState } from "react";
@@ -15,7 +15,7 @@ interface ISingleProduct {
 const SIZES = [4, 4.5, 5];
 
 const SingleProduct: FC<ISingleProduct> = ({ product }) => {
-	const [addItemToCart] = useUser((state) => [state.addItemToCart])
+	const addItemToCart = useCart((state) => state.addItemToCart)
 	const [currentImage, setCurrentImage] = useState<string>(product.images[0]);
 	const [currentSize, setCurrentSize] = useState<number | null>(null);
 

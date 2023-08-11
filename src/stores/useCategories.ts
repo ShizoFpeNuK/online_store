@@ -10,7 +10,7 @@ type CategoriesStore = {
 const useCategories = createWithEqualityFn<CategoriesStore>(
 	(set) => ({
 		categories: [],
-		setCategories: (categories: ICategory[]) => {
+		setCategories: (categories) => {
 			set({ categories });
 		},
 	}),
