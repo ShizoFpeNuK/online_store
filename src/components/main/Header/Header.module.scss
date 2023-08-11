@@ -1,7 +1,6 @@
 @import "@/utils/scss/patterns";
 
 $icon_wh: 13px;
-$avatar_wh: 36px;
 $svg_wh: 24px;
 $count_wh: 14px;
 
@@ -20,28 +19,6 @@ $count_wh: 14px;
   @extend %dflex;
   justify-content: space-between;
   flex-grow: 1;
-}
-
-.user {
-  @extend %dflex;
-  column-gap: 10px;
-  cursor: pointer;
-}
-
-.avatar {
-  width: $avatar_wh;
-  height: $avatar_wh;
-  border-radius: 50%;
-  background: var(--black);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.username {
-  font-size: 10px;
-  line-height: 12px;
-  color: var(--gray);
 }
 
 // Поисковик
@@ -75,9 +52,6 @@ $count_wh: 14px;
     font-size: 12px;
     line-height: 14px;
     color: var(--gray);
-    border: none;
-    background: none;
-    outline: none;
     width: 100%;
   }
 }

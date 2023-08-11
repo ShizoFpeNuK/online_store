@@ -1,0 +1,25 @@
+@import "@/utils/scss/patterns";
+
+$avatar_wh: 36px;
+
+.user {
+  @extend %dflex;
+  column-gap: 10px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: $avatar_wh;
+  height: $avatar_wh;
+  border-radius: 50%;
+  background: var(--black);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.username {
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--gray);
+}

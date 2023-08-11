@@ -1,8 +1,7 @@
-"use client";
-
 import styles from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import UserInfo from "./UserInfo/UserInfo";
 import { FC } from "react";
 import { ROUTES } from "@/utils/routes";
 
@@ -24,13 +23,7 @@ const Header: FC = () => {
 			</div>
 
 			<div className={styles.info}>
-				<div className={styles.user}>
-					<div
-						className={styles.avatar}
-						style={{ backgroundImage: "url(/avatar.jpg)" }}
-					/>
-					<div className={styles.username}>Guest</div>
-				</div>
+				<UserInfo />
 
 				<form className={styles.form}>
 					<div className={styles.icon}>
