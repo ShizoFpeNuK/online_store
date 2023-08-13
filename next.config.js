@@ -44,6 +44,24 @@ const nextConfig = {
 				port: "",
 				pathname: "/**",
 			},
+			{
+				protocol: "https",
+				hostname: "placeimg.com",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "www.gettyimages.in",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "api.lorem.space",
+				port: "",
+				pathname: "/**",
+			},
 		],
 	},
 };
