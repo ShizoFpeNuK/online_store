@@ -15,7 +15,7 @@ interface ISingleProduct {
 const SIZES = [4, 4.5, 5];
 
 const SingleProduct: FC<ISingleProduct> = ({ product }) => {
-	const addItemToCart = useCart((state) => state.addItemToCart)
+	const addItemToCart = useCart((state) => state.addItemToCart);
 	const [currentImage, setCurrentImage] = useState<string>(product.images[0]);
 	const [currentSize, setCurrentSize] = useState<number | null>(null);
 
