@@ -1,5 +1,5 @@
 export interface IUser {
-  id: number;
+	id: number;
 	email: string;
 	password: string;
 	name: string;
@@ -13,3 +13,15 @@ export interface ICreateUser {
 	name: string;
 	avatar: string;
 }
+
+export interface ILoginUser {
+	email: string;
+	password: string;
+}
+
+export interface IToken {
+	access_token: string;
+	refresh_token: string;
+}
+
+export type IUpdateUser = ICreateUser;

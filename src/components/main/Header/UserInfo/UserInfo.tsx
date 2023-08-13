@@ -2,22 +2,26 @@
 
 import styles from "./UserInfo.module.scss";
 import useUser from "@/stores/useUser";
+import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 const UserInfo: FC = () => {
-	const [image, setImage] = useState<string>("/avatar.jpg");
-	const [name, setName] = useState<string>("Guest");
 	const [user, setShowForm] = useUser((state) => [state.user, state.setShowForm]);
+	const [avatar, setAvatar] = useState<string>("/avatar.jpg");
+	const [name, setName] = useState<string>("Guest");
+	const router = useRouter();
 
 	const handleClick = () => {
 		if (!user) {
 			setShowForm(true);
+		} else {
+			router.push("/profile");
 		}
 	};
 
 	useEffect(() => {
 		if (user) {
-			setImage(user.avatar);
+			setAvatar(user.avatar);
 			setName(user.name);
 		}
 	}, [user]);
@@ -29,7 +33,7 @@ const UserInfo: FC = () => {
 		>
 			<div
 				className={styles.avatar}
-				style={{ backgroundImage: `url(${image})` }}
+				style={{ backgroundImage: `url(${avatar})` }}
 			/>
 			<div className={styles.username}>{name}</div>
 		</div>
