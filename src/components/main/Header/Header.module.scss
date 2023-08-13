@@ -1,6 +1,5 @@
 @import "@/utils/scss/patterns";
 
-$icon_wh: 13px;
 $svg_wh: 24px;
 $count_wh: 14px;
 
@@ -19,41 +18,6 @@ $count_wh: 14px;
   @extend %dflex;
   justify-content: space-between;
   flex-grow: 1;
-}
-
-// Поисковик
-.form {
-  @extend %dflex;
-  background: var(--black);
-  border-radius: 6px;
-  height: 27px;
-  padding: 7px 10px;
-  column-gap: 16px;
-  width: 300px;
-  position: relative;
-}
-
-.icon {
-  width: $icon_wh;
-  height: $icon_wh;
-
-  svg {
-    width: 100%;
-    height: 100%;
-    fill: var(--dark-sea);
-  }
-}
-
-.input {
-  flex-grow: 1;
-
-  input {
-    font-family: Montserrat, Roboto, sans-serif;
-    font-size: 12px;
-    line-height: 14px;
-    color: var(--gray);
-    width: 100%;
-  }
 }
 
 // Аккаунт и его иконки
@@ -105,25 +69,4 @@ $count_wh: 14px;
   color: var(--light);
   text-align: center;
   line-height: 16px;
-}
-
-// Выпадающий список для поисковика
-.box {
-  display: flex;
-  z-index: 9;
-  // top: 120%;
-  position: absolute;
-  width: 100%;
-  // left: 0;
-  max-height: 300px;
-  // overflow-y: auto;
-  padding: 12px;
-  flex-direction: column;
-  // row-gap: 8px;
-  background: var(--dark-sea);
-  border-radius: 8px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }

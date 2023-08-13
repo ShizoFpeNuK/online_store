@@ -2,6 +2,7 @@ import styles from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import UserInfo from "./UserInfo/UserInfo";
+import SearchProducts from "./SearchProducts/SearchProducts";
 import { FC } from "react";
 import { ROUTES } from "@/utils/routes";
 
@@ -22,24 +23,7 @@ const Header: FC = () => {
 
 			<div className={styles.info}>
 				<UserInfo />
-
-				<form className={styles.form}>
-					<div className={styles.icon}>
-						<svg className={styles.icon}>
-							<use href="/sprite.svg#search" />
-						</svg>
-					</div>
-					<div className={styles.input}>
-						<input
-							type="search"
-							name="search"
-							placeholder="Search for anything..."
-							autoComplete="off"
-						/>
-					</div>
-				</form>
-
-				{/* <div className={styles.box}></div> */}
+				<SearchProducts />
 
 				<div className={styles.account}>
 					<Link
