@@ -62,6 +62,12 @@ const nextConfig = {
 				port: "",
 				pathname: "/**",
 			},
+			{ 
+				protocol: "https",
+				hostname: "arepa.s3.amazonaws.com",
+				port: "",
+				pathname: "/**",
+			},
 		],
 	},
 };
