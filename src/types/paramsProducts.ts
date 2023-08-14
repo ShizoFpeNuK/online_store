@@ -3,7 +3,7 @@ export type ParamsProducts = {
 	price?: number;
 	price_min?: number;
 	price_max?: number;
-	categoryId?: number;
+	categoryId?: number | string;
 	offset?: number;
 	limit?: number;
 };
