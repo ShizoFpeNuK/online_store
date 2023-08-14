@@ -1,6 +1,6 @@
 import SingleProduct from "@/components/Products/SingleProduct/SingleProduct";
-import ProductsList from "@/components/Products/ProductsList/ProductsList";
 import ProductsService from "@/services/products.service";
+import ProductsWithStore from "@/components/Products/ProductsWithStore/ProductsWithStore";
 import { NextPage } from "next";
 
 type PageProps = {
@@ -20,6 +20,7 @@ export async function generateStaticParams() {
 
 	return products.map((product) => ({
 		id: product.id.toString(),
+		product: product, // ??
 	}));
 }
 
@@ -30,10 +31,10 @@ const ProductsItem: NextPage<PageProps> = async ({ params: { id } }) => {
 	return (
 		<>
 			<SingleProduct product={product} />
-			<ProductsList
+			<ProductsWithStore
 				title="Related products"
 				amount={amount}
-				relatedInCategoryId={product.category.id}
+				categoryId={product.category.id}
 			/>
 		</>
 	);

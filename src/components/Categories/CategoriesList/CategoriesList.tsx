@@ -1,18 +1,18 @@
 "use client";
 
-import styles from "./Categories.module.scss";
+import styles from "./CategoriesList.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import useCategories from "@/stores/useCategories";
 import { FC } from "react";
 import { ROUTES } from "@/utils/routes";
-import useCategories from "@/stores/useCategories";
 
 interface ICategories {
 	title: string;
 	amount: number;
 }
 
-const Categories: FC<ICategories> = ({ title, amount }) => {
+const CategoriesList: FC<ICategories> = ({ title, amount }) => {
 	const [categories] = useCategories((state) => [state.categories]);
 
 	return (
@@ -42,4 +42,4 @@ const Categories: FC<ICategories> = ({ title, amount }) => {
 	);
 };
 
-export default Categories;
+export default CategoriesList;

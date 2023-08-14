@@ -1,7 +1,7 @@
 import Banner from "@/components/Banner/Banner";
-import Categories from "@/components/Categories/Categories";
 import Poster from "@/components/Poster/Poster";
-import ProductsList from "@/components/Products/ProductsList/ProductsList";
+import CategoriesList from "@/components/Categories/CategoriesList/CategoriesList";
+import ProductsWithStore from "@/components/Products/ProductsWithStore/ProductsWithStore";
 import { NextPage } from "next";
 
 const Home: NextPage = () => {
@@ -10,16 +10,16 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Poster />
-			<ProductsList
+			<ProductsWithStore
 				title="Trending"
 				amount={amount}
 			/>
-			<Categories
+			<CategoriesList
 				title="Worth seeing"
 				amount={amount}
 			/>
 			<Banner />
-			<ProductsList
+			<ProductsWithStore
 				title="Less than 100$"
 				amount={amount}
 				filterPrice={100}
