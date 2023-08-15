@@ -19,33 +19,31 @@
   margin-top: 24px;
   padding: 0 20px;
 
-  .filter {
-    background: var(--bg);
-    border-radius: 8px;
-    padding: 12px 24px;
-    width: max-content;
+  .input {
     display: flex;
-    align-items: center;
-    min-width: 225px;
+    flex-direction: column;
+    row-gap: 10px;
 
-    input {
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 16px;
+    p {
+      text-align: center;
+      color: var(--gray);
     }
 
-    span {
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 16px;
-      color: var(--dark-sea);
-      text-align: right;
+    .filter {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 12px 24px;
+      width: max-content;
+      display: flex;
+      align-items: center;
+
+      input {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+      }
     }
   }
-}
-
-.full {
-  width: 100%;
 }
 
 .more {

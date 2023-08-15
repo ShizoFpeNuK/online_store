@@ -75,6 +75,7 @@ const SingleCategory: FC<ISingleCategory> = ({ categoryId }) => {
 	};
 
 	const onReset: MouseEventHandler<HTMLButtonElement> = () => {
+		setValues(defaultValues);
 		params.current = { ...defaultParams };
 		mutate(params.current);
 	};
@@ -82,7 +83,11 @@ const SingleCategory: FC<ISingleCategory> = ({ categoryId }) => {
 	useEffect(() => {
 		if (data?.length) {
 			setItems((_items) => [..._items, ...data]);
-			setIsSeeMore(true);
+			if (data.length < 5) {
+				setIsSeeMore(false);
+			} else {
+				setIsSeeMore(true);
+			}
 		}
 	}, [data]);
 
@@ -94,35 +99,47 @@ const SingleCategory: FC<ISingleCategory> = ({ categoryId }) => {
 				className={styles.filters}
 				onSubmit={onSubmit}
 			>
-				<div className={styles.filter}>
-					<input
-						type="text"
-						name="title"
-						onChange={handleChange}
-						placeholder="Product name"
-						value={values.title}
-					/>
+				<div className={styles.input}>
+					<p>Product name</p>
+					<div className={styles.filter}>
+						<input
+							type="text"
+							name="title"
+							onChange={handleChange}
+							placeholder="Product name"
+							value={values.title}
+						/>
+					</div>
 				</div>
-				<div className={styles.filter}>
-					<input
-						type="number"
-						name="price_min"
-						onChange={handleChange}
-						placeholder="Min price"
-						value={values.price_min}
-					/>
+				<div className={styles.input}>
+					<p>Min price</p>
+					<div className={styles.filter}>
+						<input
+							type="number"
+							name="price_min"
+							onChange={handleChange}
+							placeholder="Min price"
+							value={values.price_min}
+						/>
+					</div>
 				</div>
-				<div className={styles.filter}>
-					<input
-						type="number"
-						name="price_max"
-						onChange={handleChange}
-						placeholder="Max price"
-						value={values.price_max}
-					/>
+				<div className={styles.input}>
+					<p>Max price</p>
+					<div className={styles.filter}>
+						<input
+							type="number"
+							name="price_max"
+							onChange={handleChange}
+							placeholder="Max price"
+							value={values.price_max}
+						/>
+					</div>
 				</div>
 
-				<button type="submit">Find</button>
+				<button
+					type="submit"
+					hidden
+				/>
 			</form>
 
 			{!items?.length && isValidating ? (
