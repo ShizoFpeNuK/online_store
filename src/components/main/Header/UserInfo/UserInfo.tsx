@@ -23,6 +23,9 @@ const UserInfo: FC = () => {
 		if (user) {
 			setAvatar(user.avatar);
 			setName(user.name);
+		} else {
+			setAvatar("/avatar.jpg");
+			setName("Guest");
 		}
 	}, [user]);
 

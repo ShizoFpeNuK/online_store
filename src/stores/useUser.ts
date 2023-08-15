@@ -13,6 +13,7 @@ type UserStore = {
 	registerUser: (user: ICreateUser) => void;
 	loginUser: (user: ILoginUser) => void;
 	updateUser: (user: IUpdateUser) => void;
+	logout: () => void;
 };
 
 export const formTypes = { register: "register", login: "login" };
@@ -39,17 +40,24 @@ const useUser = createWithEqualityFn<UserStore>()(
 					set({ user: loginUser }, false, "login");
 				},
 				updateUser: async (updateUser) => {
-					let key: keyof IUpdateUser;
-					const user = { ...updateUser };
+					if (!get().user) {
+						return;
+					}
 
-					for (key in user) {
-						if (!user[key]) {
-							user[key] = get().user![key];
+					let key: keyof IUpdateUser;
+					const copyUser = { ...updateUser };
+
+					for (key in copyUser) {
+						if (!copyUser[key]) {
+							copyUser[key] = get().user![key];
 						}
 					}
 
-					const newUser = await UserService.update(get().user!.id, user);
+					const newUser = await UserService.update(get().user!.id, copyUser);
 					set({ user: newUser }, false, "updateUser");
+				},
+				logout: () => {
+					set({ user: null }, false, "logout");
 				},
 			}),
 			{

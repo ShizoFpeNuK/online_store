@@ -6,7 +6,11 @@ import { IUpdateUser } from "@/models/user.model";
 import { ChangeEventHandler, FC, FormEventHandler, useEffect, useState } from "react";
 
 const ProfileForm: FC = () => {
-	const [user, updateUser] = useUser((state) => [state.user, state.updateUser]);
+	const [user, updateUser, logout] = useUser((state) => [
+		state.user,
+		state.updateUser,
+		state.logout,
+	]);
 	const [values, setValues] = useState<IUpdateUser>({
 		name: "",
 		email: "",
@@ -78,12 +82,10 @@ const ProfileForm: FC = () => {
 				</div>
 			</div>
 
-			<button
-				type="submit"
-				className={styles.submit}
-			>
-				Update user
-			</button>
+			<div className={styles.buttons}>
+				<button type="submit">Update user</button>
+				<button onClick={logout}>Log out</button>
+			</div>
 		</form>
 	);
 };

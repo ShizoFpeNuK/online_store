@@ -6,7 +6,7 @@ import ProfileForm from "./ProfileForm/ProfileForm";
 import { FC, useEffect, useState } from "react";
 
 const Profile: FC = () => {
-	const user = useUser((state) => state.user);
+	const [user, setShowForm] = useUser((state) => [state.user, state.setShowForm]);
 	const [hasUser, setHasUser] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -19,7 +19,16 @@ const Profile: FC = () => {
 
 	return (
 		<div className={styles.profile}>
-			{!hasUser ? <div className={styles.login}>You need to log in</div> : <ProfileForm />}
+			{!hasUser ? (
+				<div
+					className={styles.login}
+					onClick={() => setShowForm(true)}
+				>
+					You need to log in
+				</div>
+			) : (
+				<ProfileForm />
+			)}
 		</div>
 	);
 };
