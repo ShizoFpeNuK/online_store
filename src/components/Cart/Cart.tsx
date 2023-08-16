@@ -1,27 +1,38 @@
 "use client";
 
 import styles from "./Cart.module.scss";
+import Link from "next/link";
 import useCart from "@/stores/useCart";
-import { FC, useEffect } from "react";
+import useFavorites from "@/stores/useFavorites";
+import { ROUTES } from "@/utils/routes";
+import { IProductCart } from "@/models/cart.model";
+import { NAME_STORAGES } from "@/utils/storages/nameStorages";
+import { FC, useEffect, useState } from "react";
 
 const Cart: FC = () => {
-	const [cart, getTotalPrice, decreaseQuantityItem, increaseQuantityItem, removeItem] =
+	const addItemToFav = useFavorites((state) => state.addItem);
+	const [items, setItems] = useState<IProductCart[]>([]);
+	const [cart, getTotalPrice, decreaseQuantityItem, increaseQuantityItem, removeItemToCart] =
 		useCart((state) => [
 			state.cart,
 			state.getTotalPrice,
 			state.decreaseQuantityItem,
 			state.increaseQuantityItem,
 			state.removeItem,
-			state.setCart,
 		]);
 
-	const handleStorage = (event: StorageEvent) => {
-		if (event.key === "cart_storage") {
-			useCart.persist.rehydrate();
-		}
+	const addToFav = (item: IProductCart) => {
+		addItemToFav(item);
+		removeItemToCart(item);
 	};
 
 	useEffect(() => {
+		const handleStorage = (event: StorageEvent) => {
+			if (event.key === NAME_STORAGES.CART) {
+				useCart.persist.rehydrate();
+			}
+		};
+
 		window.addEventListener("storage", handleStorage);
 
 		return () => {
@@ -29,23 +40,29 @@ const Cart: FC = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		setItems(cart);
+	}, [cart]);
+
 	return (
 		<section className={styles.cart}>
 			<h2 className={styles.title}>Your cart</h2>
 
-			{!cart.length ? (
+			{!items.length ? (
 				<span className={styles.empty}>Here is empty...</span>
 			) : (
 				<>
 					<div className={styles.list}>
-						{cart.map((item) => (
+						{items.map((item) => (
 							<div
 								key={item.id}
 								className={styles.item}
 							>
-								<div
+								<Link
+									href={`${ROUTES.PRODUCTS}/${item.id}`}
 									className={styles.image}
 									style={{ backgroundImage: `url(${item.images[0]})` }}
+									target="_blank"
 								/>
 								<div className={styles.info}>
 									<h3 className={styles.name}>{item.title}</h3>
@@ -79,8 +96,17 @@ const Cart: FC = () => {
 								<div className={styles.total}>{item.price * item.quantity}$</div>
 
 								<div
+									className={styles.favorites}
+									onClick={() => addToFav(item)}
+								>
+									<svg className={styles["icon-fav"]}>
+										<use href="/sprite.svg#heart" />
+									</svg>
+								</div>
+
+								<div
 									className={styles.close}
-									onClick={() => removeItem(item)}
+									onClick={() => removeItemToCart(item)}
 								>
 									<svg className={styles.icon}>
 										<use href="/sprite.svg#close" />

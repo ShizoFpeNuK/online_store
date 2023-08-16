@@ -11,30 +11,31 @@ $count_wh: 14px;
     width: $svg_wh;
     height: $svg_wh;
   }
-}
 
-.favourites {
-  cursor: pointer;
-}
+  .favourites {
+    position: relative;
+    cursor: pointer;
 
-.cart {
-  position: relative;
-}
+    .icon-fav {
+      stroke: var(--gray);
+      fill: none;
 
-.icon-fav {
-  stroke: var(--gray);
-  fill: none;
-
-  &:hover {
-    stroke: var(--white);
+      &:hover {
+        stroke: var(--white);
+      }
+    }
   }
-}
 
-.icon-cart {
-  fill: var(--gray);
+  .cart {
+    position: relative;
 
-  &:hover {
-    fill: var(--white);
+    .icon-cart {
+      fill: var(--gray);
+
+      &:hover {
+        fill: var(--white);
+      }
+    }
   }
 }
 

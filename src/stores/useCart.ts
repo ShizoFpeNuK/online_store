@@ -1,17 +1,18 @@
 import { shallow } from "zustand/shallow";
 import { IProduct } from "@/models/product.model";
 import { IProductCart } from "@/models/cart.model";
+import { NAME_STORAGES } from "@/utils/storages/nameStorages";
 import { createWithEqualityFn } from "zustand/traditional";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { IProductFavorites } from "@/models/favorites.model";
 
 type CartStore = {
 	cart: IProductCart[];
-	addItem: (item: IProduct) => void;
+	addItem: (item: IProduct | IProductFavorites) => void;
 	removeItem: (item: IProductCart) => void;
 	decreaseQuantityItem: (item: IProductCart) => void;
 	increaseQuantityItem: (item: IProductCart) => void;
 	getTotalPrice: () => number;
-	setCart: (items: IProductCart[]) => void;
 };
 
 const useCart = createWithEqualityFn<CartStore>()(
@@ -88,12 +89,9 @@ const useCart = createWithEqualityFn<CartStore>()(
 				getTotalPrice: () => {
 					return get().cart.reduce((prev, item) => prev + item.quantity * item.price, 0);
 				},
-				setCart: (items) => {
-					set(() => ({ cart: items }), false, "setCart");
-				},
 			}),
 			{
-				name: "cart_storage",
+				name: NAME_STORAGES.CART,
 				storage: createJSONStorage(() => localStorage),
 			},
 		),

@@ -4,9 +4,10 @@ import styles from "./SingleProduct.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import useCart from "@/stores/useCart";
+import useFavorites from "@/stores/useFavorites";
 import { ROUTES } from "@/utils/routes";
 import { IProduct } from "@/models/product.model";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface ISingleProduct {
 	product: IProduct;
@@ -16,8 +17,34 @@ const SIZES = [4, 4.5, 5];
 
 const SingleProduct: FC<ISingleProduct> = ({ product }) => {
 	const addItemToCart = useCart((state) => state.addItem);
+	const [hasInFavorites, setHasInFavorites] = useState<boolean>(false);
+	const [favorites, addItemToFavorites, removeItemFromFavorites, hasItemInFavorites] = useFavorites(
+		(state) => [state.favorites, state.addItem, state.removeItem, state.hasItem],
+	);
 	const [currentImage, setCurrentImage] = useState<string>(product.images[0]);
 	const [currentSize, setCurrentSize] = useState<number | null>(null);
+
+	const checkItemInFavorites = (item: IProduct) => {
+		const hasItem = hasItemInFavorites(item);
+
+		setHasInFavorites(!hasItem);
+
+		if (hasItem) {
+			removeItemFromFavorites(item);
+		} else {
+			addItemToFavorites(item);
+		}
+	};
+
+	useEffect(() => {
+		const hasItem = hasItemInFavorites(product);
+
+		if (hasItem) {
+			setHasInFavorites(true);
+		} else {
+			setHasInFavorites(false);
+		}
+	}, [hasItemInFavorites, product, favorites]);
 
 	return (
 		<section className={styles.product}>
@@ -73,7 +100,13 @@ const SingleProduct: FC<ISingleProduct> = ({ product }) => {
 						>
 							Add to cart
 						</button>
-						<button className={styles.favourite}>Add to favourites</button>
+
+						<button
+							className={styles.favourite}
+							onClick={() => checkItemInFavorites(product)}
+						>
+							{!hasInFavorites ? "Add to favorites" : "Remove from favorites"}
+						</button>
 					</div>
 
 					<div className={styles.bottom}>

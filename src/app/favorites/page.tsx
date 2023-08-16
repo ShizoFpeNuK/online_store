@@ -1,7 +1,8 @@
+import Favorites from "@/components/Favorites/Favorites";
 import { NextPage } from "next";
 
 const FavoritesPage: NextPage = () => {
-	return <div>Favorites</div>;
+	return <Favorites />;
 };
 
 export default FavoritesPage;

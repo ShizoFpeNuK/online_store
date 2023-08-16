@@ -1,8 +1,6 @@
 @import "@/utils/scss/patterns";
 
-$svg_wh: 24px;
-
-.cart {
+.favorites {
   @extend %section;
   width: calc(100% - 324px);
   padding: 24px 32px;
@@ -39,7 +37,7 @@ $svg_wh: 24px;
     width: 100%;
     padding: 12px 16px;
     display: grid;
-    grid-template-columns: 100px 3fr 0.5fr 1fr 0.8fr 50px 16px;
+    grid-template-columns: 100px 2fr 130px 0.4fr 16px;
     align-items: center;
     height: 70px;
 
@@ -62,7 +60,7 @@ $svg_wh: 24px;
         font-size: 13px;
         line-height: 16px;
       }
-
+  
       .category {
         font-size: 10px;
         line-height: 12px;
@@ -70,72 +68,13 @@ $svg_wh: 24px;
       }
     }
 
+    .buy {
+      max-width: 100px;
+    }
+
     .price {
-      text-align: center;
       font-size: 14px;
       line-height: 18px;
-    }
-
-    .favorites {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-
-      .icon-fav {
-        width: $svg_wh;
-        height: $svg_wh;
-        stroke: var(--gray);
-        fill: none;
-
-        &:hover {
-          stroke: var(--white);
-        }
-      }
-    }
-  }
-}
-
-.quantity {
-  display: flex;
-  align-items: center;
-
-  .icon {
-    width: 12px;
-    height: 12px;
-  }
-
-  span {
-    width: 40px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 17px;
-    color: var(--dark-sea);
-  }
-
-  svg {
-    width: 17px;
-    height: 17px;
-    fill: rgba(255, 255, 255, 0.5);
-  }
-}
-
-.minus,
-.plus {
-  background: var(--dark-sea);
-  border-radius: 6px;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  &:hover,
-  &:hover {
-    background: var(--violet);
-
-    svg {
-      fill: rgba(255, 255, 255, 1);
     }
   }
 }
@@ -151,23 +90,5 @@ $svg_wh: 24px;
 
   &:hover svg {
     stroke: rgba(255, 255, 255, 1);
-  }
-}
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-}
-
-.total {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--gray);
-
-  span {
-    color: #fff;
   }
 }

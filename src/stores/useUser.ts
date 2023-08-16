@@ -1,8 +1,9 @@
 import UserService from "@/services/users.service";
 import { shallow } from "zustand/shallow";
+import { NAME_STORAGES } from "@/utils/storages/nameStorages";
 import { createWithEqualityFn } from "zustand/traditional";
-import { ICreateUser, ILoginUser, IUpdateUser, IUser } from "@/models/user.model";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { ICreateUser, ILoginUser, IUpdateUser, IUser } from "@/models/user.model";
 
 type UserStore = {
 	user: IUser | null;
@@ -61,7 +62,7 @@ const useUser = createWithEqualityFn<UserStore>()(
 				},
 			}),
 			{
-				name: "user_storage",
+				name: NAME_STORAGES.USER,
 				storage: createJSONStorage(() => localStorage),
 				partialize: (state) => ({ user: state.user }),
 			},
