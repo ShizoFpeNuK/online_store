@@ -4,8 +4,8 @@ import styles from "./Favorites.module.scss";
 import Link from "next/link";
 import useCart from "@/stores/useCart";
 import useFavorites from "@/stores/useFavorites";
+import useSyncCartAndFav from "@/hooks/useSyncCartAndFav";
 import { ROUTES } from "@/utils/routes";
-import { NAME_STORAGES } from "@/utils/storages/nameStorages";
 import { IProductFavorites } from "@/models/favorites.model";
 import { FC, useEffect, useState } from "react";
 
@@ -17,24 +17,13 @@ const Favorites: FC = () => {
 		state.removeItem,
 	]);
 
+	// Синхронизация избранного на других вкладках
+	useSyncCartAndFav(false, true);
+
 	const addToCart = (item: IProductFavorites) => {
 		addItemToCart(item);
 		removeItemFromFav(item);
 	};
-
-	useEffect(() => {
-		const handleStorage = (event: StorageEvent) => {
-			if (event.key === NAME_STORAGES.FAVORITES) {
-				useFavorites.persist.rehydrate();
-			}
-		};
-
-		window.addEventListener("storage", handleStorage);
-
-		return () => {
-			window.removeEventListener("storage", handleStorage);
-		};
-	}, []);
 
 	useEffect(() => {
 		setItems(favorites);

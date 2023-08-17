@@ -4,9 +4,9 @@ import styles from "./Cart.module.scss";
 import Link from "next/link";
 import useCart from "@/stores/useCart";
 import useFavorites from "@/stores/useFavorites";
+import useSyncCartAndFav from "@/hooks/useSyncCartAndFav";
 import { ROUTES } from "@/utils/routes";
 import { IProductCart } from "@/models/cart.model";
-import { NAME_STORAGES } from "@/utils/storages/nameStorages";
 import { FC, useEffect, useState } from "react";
 
 const Cart: FC = () => {
@@ -21,24 +21,13 @@ const Cart: FC = () => {
 			state.removeItem,
 		]);
 
+	// Синхронизация корзины на других вкладках
+	useSyncCartAndFav(true);
+
 	const addToFav = (item: IProductCart) => {
 		addItemToFav(item);
 		removeItemToCart(item);
 	};
-
-	useEffect(() => {
-		const handleStorage = (event: StorageEvent) => {
-			if (event.key === NAME_STORAGES.CART) {
-				useCart.persist.rehydrate();
-			}
-		};
-
-		window.addEventListener("storage", handleStorage);
-
-		return () => {
-			window.removeEventListener("storage", handleStorage);
-		};
-	}, []);
 
 	useEffect(() => {
 		setItems(cart);
