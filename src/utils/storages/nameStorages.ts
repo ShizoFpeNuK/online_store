@@ -3,4 +3,5 @@ export enum NAME_STORAGES {
 	CART = "cart_storage",
 	FAVORITES = "favorites_storage",
 	CLEAR_CART = "clear_cart",
+	CLEAR_FAV = "clear_fav",
 }
