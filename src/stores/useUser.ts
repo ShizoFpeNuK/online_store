@@ -7,31 +7,17 @@ import { ICreateUser, ILoginUser, IUpdateUser, IUser } from "@/models/user.model
 
 type UserStore = {
 	user: IUser | null;
-	showForm: boolean;
-	formType: string;
-	setShowForm: (boolean: boolean) => void;
-	setFormType: (formType: string) => void;
 	registerUser: (user: ICreateUser) => void;
 	loginUser: (user: ILoginUser) => void;
 	updateUser: (user: IUpdateUser) => void;
 	logout: () => void;
 };
 
-export const formTypes = { register: "register", login: "login" };
-
 const useUser = createWithEqualityFn<UserStore>()(
 	devtools(
 		persist(
 			(set, get) => ({
 				user: null,
-				showForm: false,
-				formType: formTypes.register,
-				setShowForm: (boolean) => {
-					set({ showForm: boolean }, false, "setShowForm");
-				},
-				setFormType: (formType) => {
-					set({ formType }, false, "setFormType");
-				},
 				registerUser: async (user) => {
 					const newUser = await UserService.register(user);
 					set({ user: newUser }, false, "register");

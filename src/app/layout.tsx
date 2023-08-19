@@ -3,7 +3,6 @@ import Header from "@/components/main/Header/Header";
 import Footer from "@/components/main/Footer/Footer";
 import SideBar from "@/components/main/SideBar/SideBar";
 import ProductsService from "@/services/products.service";
-import WrapperUserForm from "@/components/User/WrapperUserForm/WrapperUserForm";
 import StoreInitializer from "@/components/main/StoreInitializer/StoreInitializer";
 import CategoriesService from "@/services/categories.service";
 import { FC, ReactNode } from "react";
@@ -21,12 +20,15 @@ const RootLayout: FC<{ children: ReactNode }> = async ({ children }) => {
 	return (
 		<html lang="en">
 			<body className="container">
+				<div
+					id="portal"
+					style={{ position: "relative", zIndex: 1000 }}
+				/>
 				<StoreInitializer
 					products={products}
 					categories={categories}
 				/>
 				<Header />
-				<WrapperUserForm />
 				<main className="wrapper">
 					<SideBar />
 					{children}

@@ -1,12 +1,15 @@
 "use client";
 
 import styles from "./Profile.module.scss";
+import Portal from "../popups/Portal";
 import useUser from "@/stores/useUser";
+import RegLogModal from "../popups/RegLogModal/RegLogModal";
 import ProfileForm from "./ProfileForm/ProfileForm";
 import { FC, useEffect, useState } from "react";
 
 const Profile: FC = () => {
-	const [user, setShowForm] = useUser((state) => [state.user, state.setShowForm]);
+	const user = useUser((state) => state.user);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [hasUser, setHasUser] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -18,18 +21,22 @@ const Profile: FC = () => {
 	}, [user]);
 
 	return (
-		<div className={styles.profile}>
-			{!hasUser ? (
-				<div
-					className={styles.login}
-					onClick={() => setShowForm(true)}
-				>
-					You need to log in
-				</div>
-			) : (
-				<ProfileForm />
-			)}
-		</div>
+		<>
+			<div className={styles.profile}>
+				{!hasUser ? (
+					<div
+						className={styles.login}
+						onClick={() => setIsOpen(true)}
+					>
+						You need to log in
+					</div>
+				) : (
+					<ProfileForm />
+				)}
+			</div>
+
+			<Portal>{isOpen && <RegLogModal onClose={() => setIsOpen(false)} />}</Portal>
+		</>
 	);
 };
 
