@@ -1,5 +1,10 @@
 import Favorites from "@/components/Favorites/Favorites";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
+
+export const metadata: Metadata = {
+	title: "Favorites | Online Store",
+	description: "Favorites list",
+};
 
 const FavoritesPage: NextPage = () => {
 	return <Favorites />;

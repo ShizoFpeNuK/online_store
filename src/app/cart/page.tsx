@@ -1,5 +1,10 @@
 import Cart from "@/components/Cart/Cart";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
+
+export const metadata: Metadata = {
+	title: "Cart | Online Store",
+	description: "Shopping cart",
+};
 
 const CartPage: NextPage = () => {
 	return <Cart />;
