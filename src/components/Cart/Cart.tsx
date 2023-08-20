@@ -5,17 +5,16 @@ import Link from "next/link";
 import Portal from "../popups/Portal";
 import useCart from "@/stores/useCart";
 import useFavorites from "@/stores/useFavorites";
-import ReturnToCart from "../popups/ReturnToCart/ReturnToCart";
 import useSyncCartAndFav from "@/hooks/useSyncCartAndFav";
+import ToastReturnToCart from "../popups/ReturnToCart/ToastReturnToCart/ToastReturnToCart";
 import { ROUTES } from "@/utils/routes";
 import { IProductCart } from "@/models/cart.model";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 const Cart: FC = () => {
 	const addItemToFav = useFavorites((state) => state.addItem);
-	const timeoutId = useRef<NodeJS.Timeout>();
 	const [items, setItems] = useState<IProductCart[]>([]);
-	const [returnProduct, setReturnProduct] = useState<IProductCart | null>(null);
+	const [returnProducts, setReturnProducts] = useState<IProductCart | null>(null);
 	const [cart, getTotalPrice, decreaseQuantityItem, increaseQuantityItem, removeItemFromCart] =
 		useCart((state) => [
 			state.cart,
@@ -28,34 +27,19 @@ const Cart: FC = () => {
 	// Синхронизация корзины на других вкладках
 	useSyncCartAndFav(true);
 
-	const removeItemWithPopup = (item: IProductCart) => {
-		removeItemFromCart(item);
-		setReturnProduct(item);
+	const removeItemWithPopup = (product: IProductCart) => {
+		removeItemFromCart(product);
+		setReturnProducts(product);
 	};
 
-	const addToFav = (item: IProductCart) => {
-		addItemToFav(item);
-		removeItemFromCart(item);
+	const addToFav = (product: IProductCart) => {
+		addItemToFav(product);
+		removeItemFromCart(product);
 	};
 
 	useEffect(() => {
 		setItems(cart);
 	}, [cart]);
-
-	// Запуск удержания уведомления
-	useEffect(() => {
-		if (returnProduct) {
-			const timer = setTimeout(() => {
-				setReturnProduct(null);
-			}, 10000);
-
-			timeoutId.current = timer;
-		}
-
-		return () => {
-			clearTimeout(timeoutId.current);
-		};
-	}, [returnProduct]);
 
 	return (
 		<>
@@ -142,12 +126,7 @@ const Cart: FC = () => {
 			</section>
 
 			<Portal>
-				{returnProduct && (
-					<ReturnToCart
-						product={returnProduct}
-						onClose={() => setReturnProduct(null)}
-					/>
-				)}
+				<ToastReturnToCart products={returnProducts} />
 			</Portal>
 		</>
 	);

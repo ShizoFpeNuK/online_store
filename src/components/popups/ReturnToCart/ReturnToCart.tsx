@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./ReturnToCart.module.scss";
+import useCart from "@/stores/useCart";
 import { FC } from "react";
 import { IProductCart } from "@/models/cart.model";
-import useCart from "@/stores/useCart";
 
 interface IReturnToCart {
 	product: IProductCart;
@@ -19,7 +19,7 @@ const ReturnToCart: FC<IReturnToCart> = ({ onClose, product }) => {
 	};
 
 	return (
-		<div className={styles.notification}>
+		<div className={styles.notification} onClick={onClose}>
 			<div className={styles.text}>
 				<h3 className={styles.title}>Notification</h3>
 				<div className={styles.message}>
@@ -28,15 +28,6 @@ const ReturnToCart: FC<IReturnToCart> = ({ onClose, product }) => {
 			</div>
 
 			<button onClick={addProductToCart}>Return</button>
-
-			<div
-				className={styles.close}
-				onClick={onClose}
-			>
-				<svg className={styles.icon}>
-					<use href="/sprite.svg#close" />
-				</svg>
-			</div>
 		</div>
 	);
 };

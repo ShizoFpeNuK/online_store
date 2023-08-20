@@ -1,16 +1,12 @@
-$wh_icon: 16px;
-
 .notification {
   display: grid;
   column-gap: 30px;
   align-items: center;
-  grid-template-columns: 350px 100px $wh_icon;
-  position: fixed;
-  top: 25px;
-  right: 20px;
+  grid-template-columns: 310px 100px;
   background-color: var(--dark-sea);
   padding: 20px;
   border-radius: 6px;
+  cursor: pointer;
 
   .text {
     .title {
@@ -27,22 +23,4 @@ $wh_icon: 16px;
       }
     }
   }
-
-  .close {
-    margin-top: 1px;
-    cursor: pointer;
-
-    svg {
-      stroke: rgba(255, 255, 255, 0.5);
-    }
-
-    &:hover svg {
-      stroke: rgba(255, 255, 255, 1);
-    }
-  }
-}
-
-.icon {
-  width: $wh_icon;
-  height: $wh_icon;
 }
