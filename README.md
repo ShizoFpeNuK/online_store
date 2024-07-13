@@ -8,7 +8,8 @@
 - Корзина и Избранное должны быть синхронизированы между вкладками браузера. Также корзина должна сама очищаться через некоторое время
 # Источники
 Макет: https://www.figma.com/file/7itpNsHVP5LPUpK4ENDYkv/Shop?type=design&node-id=0-1&mode=design&t=e3k854oxkqlPlAjz-0 \
-API: https://fakeapi.platzi.com/en/rest/introduction
+API: https://fakeapi.platzi.com/en/rest/introduction \
+Сайт: [Vercel](https://online-store-ruddy-sigma.vercel.app/)
 # Используемые технологии
 - Next.js
 - Zustand (из-за нереактивности)
